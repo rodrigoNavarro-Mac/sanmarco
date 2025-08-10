@@ -1,22 +1,27 @@
 /* Variables CSS personalizadas */
 :root {
-    --coffee-primary: #8B4513;
-    --coffee-light: #D2691E;
-    --coffee-dark: #654321;
-    --coffee-mocha: #A0522D;
-    --coffee-latte: #F5DEB3;
-    --coffee-cream: #FFF8DC;
+    --coffee-primary: #591e15;      /* Marrón oscuro principal */
+    --coffee-light: #685c2e;        /* Marrón oliva */
+    --coffee-dark: #3d1a0f;         /* Marrón más oscuro derivado */
+    --coffee-mocha: #4a2e1a;        /* Marrón medio derivado */
+    --coffee-latte: #D1BB91;        /* Beige claro actualizado */
+    --coffee-cream: #e8dfd5;        /* Beige más claro derivado */
     --black: #000000;
-    --gray-900: #111827;
-    --gray-800: #1F2937;
-    --gray-700: #374151;
-    --gray-600: #4B5563;
-    --gray-500: #6B7280;
-    --gray-400: #9CA3AF;
-    --gray-300: #D1D5DB;
-    --gray-200: #E5E7EB;
-    --gray-100: #F3F4F6;
+    --gray-900: #2d241f;            /* Beige muy oscuro */
+    --gray-800: #4a3d35;            /* Beige oscuro */
+    --gray-700: #67584c;            /* Beige medio oscuro */
+    --gray-600: #847363;            /* Beige medio */
+    --gray-500: #c9b180;            /* Beige medio basado en D1BB91 */
+    --gray-400: #d1bb91;            /* Beige claro base */
+    --gray-300: #dbcaa9;            /* Beige más claro */
+    --gray-200: #e7dcc0;            /* Beige muy claro */
+    --gray-100: #f3edd7;            /* Beige casi blanco */
     --white: #FFFFFF;
+    
+    /* Variables de color olivo - ahora basadas en los nuevos colores */
+    --olive: #685c2e;               /* Marrón oliva principal */
+    --olive-light: #8a7f4a;         /* Marrón oliva claro */
+    --olive-dark: #4a3f1f;          /* Marrón oliva oscuro */
     
     /* Nuevas variables para efectos modernos */
     --border-radius-sm: 0.75rem;
@@ -32,8 +37,8 @@
     --shadow-xl: 0 30px 60px rgba(0, 0, 0, 0.35);
     
     /* Efectos glassmorphism */
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(209, 187, 145, 0.05);
+    --glass-border: rgba(209, 187, 145, 0.1);
     --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
@@ -48,6 +53,7 @@ body {
     color: var(--white);
     line-height: 1.6;
     overflow-x: hidden;
+    padding-top: 80px; /* Espacio para la navegación fija */
 }
 
 /* Tipografías personalizadas */
@@ -74,14 +80,15 @@ body {
 
 /* Hero Section Moderno con Glassmorphism */
 .hero-section {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 100%), 
-                url('images/hero-bg.jpg') center/cover no-repeat;
-    min-height: 100vh;
+    background: linear-gradient(135deg, rgba(209, 187, 145, 0.15) 0%, rgba(209, 187, 145, 0.08) 100%), 
+                url('images/DSC04113.jpg') center/cover no-repeat;
+    height: 100vh; /* Cambiado de min-height a height para altura fija */
     position: relative;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 0;
 }
 
 .hero-section::before {
@@ -91,7 +98,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 30% 70%, rgba(139, 69, 19, 0.15) 0%, transparent 60%);
+    background: radial-gradient(circle at 30% 70%, rgba(209, 187, 145, 0.20) 0%, transparent 60%);
     z-index: 1;
 }
 
@@ -101,17 +108,23 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 70% 30%, rgba(139, 69, 19, 0.1) 0%, transparent 50%);
+    background: radial-gradient(circle at 70% 30%, rgba(209, 187, 145, 0.15) 0%, transparent 50%);
     z-index: 2;
 }
 
 /* Navegación Moderna con Glassmorphism */
 nav {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.9);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--glass-border);
     box-shadow: var(--shadow-md);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    height: 80px; /* Altura fija para la navegación */
 }
 
 .nav-link {
@@ -124,6 +137,7 @@ nav {
     background: transparent;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-block;
+    z-index: 10000; /* Asegurar que los enlaces estén por encima */
 }
 
 .nav-link::before {
@@ -133,7 +147,7 @@ nav {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(107, 142, 35, 0.15) 0%, rgba(107, 142, 35, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(104, 92, 46, 0.15) 0%, rgba(104, 92, 46, 0.05) 100%);
     border-radius: var(--border-radius-md);
     opacity: 0;
     transition: opacity 0.4s ease;
@@ -156,7 +170,7 @@ nav {
 .nav-link:hover {
     color: var(--olive);
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(107, 142, 35, 0.3);
+    box-shadow: 0 10px 30px rgba(104, 92, 46, 0.3);
 }
 
 .nav-link:hover::before {
@@ -260,7 +274,7 @@ nav {
 
 /* Menú Moderno con Glassmorphism */
 .menu-category {
-    background: linear-gradient(135deg, rgba(31, 41, 55, 0.9) 0%, rgba(17, 24, 39, 0.9) 100%);
+    background: linear-gradient(135deg, rgba(209, 187, 145, 0.10) 0%, rgba(209, 187, 145, 0.06) 100%);
     padding: 2rem;
     border-radius: var(--border-radius-xl);
     border: 1px solid var(--glass-border);
@@ -270,6 +284,7 @@ nav {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     box-shadow: var(--shadow-md);
+    z-index: 10; /* Asegurar que esté por encima del hero */
 }
 
 .menu-category::before {
@@ -279,7 +294,7 @@ nav {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(107, 142, 35, 0.1) 0%, transparent 100%);
+    background: linear-gradient(135deg, rgba(104, 92, 46, 0.1) 0%, transparent 100%);
     opacity: 0;
     transition: opacity 0.4s ease;
 }
@@ -297,7 +312,7 @@ nav {
 .menu-item {
     padding: 1rem;
     border-radius: var(--border-radius-md);
-    background: linear-gradient(135deg, rgba(107, 142, 35, 0.05) 0%, transparent 100%);
+    background: linear-gradient(135deg, rgba(104, 92, 46, 0.05) 0%, transparent 100%);
     border: 1px solid transparent;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
@@ -312,18 +327,24 @@ nav {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(107, 142, 35, 0.15), transparent);
+    background: linear-gradient(90deg, transparent, rgba(104, 92, 46, 0.15), transparent);
     transition: left 0.6s ease;
 }
 
 .menu-item:hover {
-    border-color: rgba(107, 142, 35, 0.4);
+    border-color: rgba(104, 92, 46, 0.4);
     transform: translateX(10px);
     box-shadow: var(--shadow-md);
 }
 
 .menu-item:hover::before {
     left: 100%;
+}
+
+/* Sección del Menú */
+#menu {
+    position: relative;
+    z-index: 10; /* Asegurar que esté por encima del hero */
 }
 
 /* Galería Moderna */
@@ -369,7 +390,7 @@ nav {
 
 /* Eventos Modernos con Glassmorphism */
 .event-card {
-    background: linear-gradient(135deg, rgba(31, 41, 55, 0.9) 0%, rgba(17, 24, 39, 0.9) 100%);
+    background: linear-gradient(135deg, rgba(209, 187, 145, 0.10) 0%, rgba(209, 187, 145, 0.06) 100%);
     border-radius: var(--border-radius-xl);
     overflow: hidden;
     border: 1px solid var(--glass-border);
@@ -387,7 +408,7 @@ nav {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(107, 142, 35, 0.1) 0%, transparent 100%);
+    background: linear-gradient(135deg, rgba(104, 92, 46, 0.1) 0%, transparent 100%);
     opacity: 0;
     transition: opacity 0.4s ease;
     z-index: 1;
@@ -435,7 +456,7 @@ nav {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(107, 142, 35, 0.1) 0%, transparent 100%);
+    background: linear-gradient(135deg, rgba(104, 92, 46, 0.1) 0%, transparent 100%);
     opacity: 0;
     transition: opacity 0.4s ease;
 }
@@ -448,7 +469,7 @@ nav {
 .form-input {
     width: 100%;
     padding: 1rem 1.5rem;
-    background: linear-gradient(135deg, rgba(31, 41, 55, 0.9) 0%, rgba(17, 24, 39, 0.9) 100%);
+    background: linear-gradient(135deg, rgba(209, 187, 145, 0.10) 0%, rgba(209, 187, 145, 0.06) 100%);
     border: 1px solid var(--glass-border);
     border-radius: var(--border-radius-md);
     color: var(--white);
@@ -462,7 +483,7 @@ nav {
 .form-input:focus {
     outline: none;
     border-color: var(--olive);
-    box-shadow: 0 0 0 3px rgba(107, 142, 35, 0.2), var(--shadow-md);
+    box-shadow: 0 0 0 3px rgba(104, 92, 46, 0.2), var(--shadow-md);
     transform: translateY(-2px);
 }
 
@@ -502,13 +523,13 @@ nav {
     border-color: var(--olive);
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
-    background: rgba(107, 142, 35, 0.1);
+    background: rgba(104, 92, 46, 0.1);
 }
 
 /* Información de ubicación y contacto */
 .location-info,
 .contact-info {
-    background: linear-gradient(135deg, rgba(31, 41, 55, 0.9) 0%, rgba(17, 24, 39, 0.9) 100%);
+    background: linear-gradient(135deg, rgba(209, 187, 145, 0.10) 0%, rgba(209, 187, 145, 0.06) 100%);
     padding: 2rem;
     border-radius: var(--border-radius-xl);
     border: 1px solid var(--glass-border);
@@ -528,7 +549,7 @@ nav {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(107, 142, 35, 0.1) 0%, transparent 100%);
+    background: linear-gradient(135deg, rgba(104, 92, 46, 0.1) 0%, transparent 100%);
     opacity: 0;
     transition: opacity 0.4s ease;
 }
@@ -697,7 +718,7 @@ html {
 
 /* Mejoras para el mapa */
 .map-container {
-    background: linear-gradient(135deg, rgba(31, 41, 55, 0.9) 0%, rgba(17, 24, 39, 0.9) 100%);
+    background: linear-gradient(135deg, rgba(209, 187, 145, 0.10) 0%, rgba(209, 187, 145, 0.06) 100%);
     border-radius: var(--border-radius-lg);
     border: 1px solid var(--glass-border);
     backdrop-filter: blur(20px);
@@ -713,8 +734,14 @@ html {
 
 /* Footer moderno */
 footer {
-    background: linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(31, 41, 55, 0.95) 100%);
+    background: linear-gradient(135deg, rgba(209, 187, 145, 0.12) 0%, rgba(209, 187, 145, 0.08) 100%);
     border-top: 1px solid var(--glass-border);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
 }
+
+/* Utilidades de color basadas en variables (paleta beige) */
+.bg-surface-900 { background-color: var(--gray-900) !important; }
+.bg-surface-800 { background-color: var(--gray-800) !important; }
+.text-muted { color: var(--coffee-latte) !important; }
+.text-muted-2 { color: var(--coffee-latte) !important; }
