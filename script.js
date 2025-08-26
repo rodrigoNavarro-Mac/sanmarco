@@ -339,6 +339,197 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('San Marco Ristorante - Página cargada exitosamente');
 });
 
+// Funcionalidad del formulario de contacto
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Obtener los valores del formulario
+            const nombre = document.getElementById('nombre').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const telefono = document.getElementById('telefono').value.trim();
+            const asunto = document.getElementById('asunto').value;
+            const mensaje = document.getElementById('mensaje').value.trim();
+            
+            // Validar campos obligatorios
+            if (!nombre || !email || !asunto || !mensaje) {
+                alert('Por favor, completa todos los campos obligatorios.');
+                return;
+            }
+            
+            // Validar formato de email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Por favor, ingresa un email válido.');
+                return;
+            }
+            
+            // Crear el contenido del email
+            const emailSubject = encodeURIComponent(`[San Marco Ristorante] ${asunto}`);
+            const emailBody = encodeURIComponent(`
+Hola Alberto,
+
+Has recibido un nuevo mensaje desde el sitio web de San Marco Ristorante:
+
+📋 INFORMACIÓN DEL CONTACTO:
+• Nombre: ${nombre}
+• Email: ${email}
+• Teléfono: ${telefono || 'No proporcionado'}
+• Asunto: ${asunto}
+
+💬 MENSAJE:
+${mensaje}
+
+---
+Este mensaje fue enviado desde el formulario de contacto del sitio web.
+            `);
+            
+            // Crear el enlace mailto
+            const mailtoLink = `mailto:alberto.panza@sanmarcoristorante.com?subject=${emailSubject}&body=${emailBody}`;
+            
+            // Abrir el cliente de email predeterminado
+            window.open(mailtoLink, '_blank');
+            
+            // Mostrar mensaje de confirmación
+            alert('¡Mensaje enviado! Se abrirá tu cliente de email predeterminado.');
+            
+            // Limpiar el formulario
+            contactForm.reset();
+        });
+    }
+    
+    // Validación en tiempo real para el teléfono
+    const telefonoInput = document.getElementById('telefono');
+    if (telefonoInput) {
+        telefonoInput.addEventListener('input', function(e) {
+            // Permitir solo números, espacios, paréntesis, guiones y el símbolo +
+            let value = e.target.value;
+            value = value.replace(/[^\d\s\(\)\-\+]/g, '');
+            e.target.value = value;
+        });
+    }
+    
+    // Validación en tiempo real para el nombre
+    const nombreInput = document.getElementById('nombre');
+    if (nombreInput) {
+        nombreInput.addEventListener('input', function(e) {
+            // Permitir solo letras, espacios y acentos
+            let value = e.target.value;
+            value = value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+            e.target.value = value;
+        });
+    }
+});
+
+// Funcionalidad de navegación suave
+document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+});
+
+// Funcionalidad de scroll para la navegación
+window.addEventListener('scroll', function() {
+    const nav = document.querySelector('nav');
+    if (nav) {
+        if (window.scrollY > 100) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    }
+});
+
+// Animaciones de entrada para elementos
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+        }
+    });
+}, observerOptions);
+
+// Observar elementos para animaciones
+document.addEventListener('DOMContentLoaded', function() {
+    const animatedElements = document.querySelectorAll('.slide-in-left, .slide-in-right, .slide-in-up, .fade-in-up, .scale-in');
+    
+    animatedElements.forEach(el => {
+        observer.observe(el);
+    });
+});
+
+// Funcionalidad del menú móvil
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+});
+
+// Funcionalidad de galería con lightbox (opcional)
+document.addEventListener('DOMContentLoaded', function() {
+    const galleryItems = document.querySelectorAll('.gallery-item img');
+    
+    galleryItems.forEach(img => {
+        img.addEventListener('click', function() {
+            // Crear lightbox simple
+            const lightbox = document.createElement('div');
+            lightbox.className = 'fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 cursor-pointer';
+            lightbox.innerHTML = `
+                <img src="${this.src}" alt="${this.alt}" class="max-w-4xl max-h-4xl object-contain">
+                <button class="absolute top-4 right-4 text-white text-2xl hover:text-olive transition-colors">×</button>
+            `;
+            
+            document.body.appendChild(lightbox);
+            
+            // Cerrar lightbox
+            lightbox.addEventListener('click', function() {
+                document.body.removeChild(lightbox);
+            });
+        });
+    });
+});
+
+// Funcionalidad de formulario de reserva (si existe)
+document.addEventListener('DOMContentLoaded', function() {
+    const reservationForm = document.querySelector('form:not(#contactForm)');
+    
+    if (reservationForm) {
+        reservationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Aquí puedes agregar la lógica para el formulario de reserva
+            alert('Funcionalidad de reserva en desarrollo. Por favor, usa el formulario de contacto.');
+        });
+    }
+});
+
 // ===== FUNCIONES UTILITARIAS =====
 
 // Función para formatear números de teléfono

@@ -40,6 +40,11 @@
     --glass-bg: rgba(209, 187, 145, 0.05);
     --glass-border: rgba(209, 187, 145, 0.1);
     --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    
+    /* Variables de layout para evitar superposiciones */
+    --section-spacing: 5rem;
+    --hero-height: 100vh;
+    --nav-height: 80px;
 }
 
 /* Reset y configuración base */
@@ -53,7 +58,7 @@ body {
     color: var(--white);
     line-height: 1.6;
     overflow-x: hidden;
-    padding-top: 80px; /* Espacio para la navegación fija */
+    padding-top: var(--nav-height); /* Espacio para la navegación fija */
 }
 
 /* Tipografías personalizadas */
@@ -78,17 +83,19 @@ body {
     border-color: var(--coffee-primary);
 }
 
-/* Hero Section Moderno con Glassmorphism */
+/* Hero Section Moderno con Glassmorphism - LAYOUT MEJORADO */
 .hero-section {
     background: linear-gradient(135deg, rgba(209, 187, 145, 0.15) 0%, rgba(209, 187, 145, 0.08) 100%), 
                 url('images/DSC04113.jpg') center/cover no-repeat;
-    height: 100vh; /* Cambiado de min-height a height para altura fija */
+    height: var(--hero-height);
+    min-height: 100vh;
     position: relative;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 0;
+    z-index: 1; /* Z-index más bajo para el hero */
+    margin-bottom: 0; /* Sin margen inferior */
 }
 
 .hero-section::before {
@@ -123,8 +130,8 @@ nav {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 9999;
-    height: 80px; /* Altura fija para la navegación */
+    z-index: 1000; /* Z-index alto pero no excesivo */
+    height: var(--nav-height);
 }
 
 .nav-link {
@@ -137,7 +144,7 @@ nav {
     background: transparent;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-block;
-    z-index: 10000; /* Asegurar que los enlaces estén por encima */
+    z-index: 1001; /* Asegurar que los enlaces estén por encima */
 }
 
 .nav-link::before {
@@ -284,7 +291,7 @@ nav {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     box-shadow: var(--shadow-md);
-    z-index: 10; /* Asegurar que esté por encima del hero */
+    z-index: 10; /* Z-index moderado */
 }
 
 .menu-category::before {
@@ -341,10 +348,13 @@ nav {
     left: 100%;
 }
 
-/* Sección del Menú */
+/* Sección del Menú - LAYOUT MEJORADO */
 #menu {
     position: relative;
-    z-index: 10; /* Asegurar que esté por encima del hero */
+    z-index: 20; /* Z-index más alto que el hero */
+    background-color: var(--black);
+    padding: var(--section-spacing) 0;
+    margin-top: 0; /* Sin margen superior */
 }
 
 /* Galería Moderna */
@@ -501,6 +511,61 @@ nav {
     box-shadow: var(--shadow-md);
 }
 
+/* NUEVO: Estilos específicos para el dropdown/select */
+.form-input[type="select"],
+.form-input select,
+select.form-input {
+    background: linear-gradient(135deg, var(--gray-800) 0%, var(--gray-900) 100%);
+    color: var(--white);
+    cursor: pointer;
+    border: 1px solid var(--gray-700);
+}
+
+.form-input[type="select"]:focus,
+.form-input select:focus,
+select.form-input:focus {
+    background: linear-gradient(135deg, var(--gray-700) 0%, var(--gray-800) 100%);
+    border-color: var(--olive);
+    box-shadow: 0 0 0 3px rgba(104, 92, 46, 0.2), var(--shadow-md);
+}
+
+.form-input[type="select"]:hover,
+.form-input select:hover,
+select.form-input:hover {
+    background: linear-gradient(135deg, var(--gray-700) 0%, var(--gray-800) 100%);
+    border-color: var(--olive);
+}
+
+/* Estilos para las opciones del dropdown */
+.form-input option,
+select.form-input option {
+    background-color: var(--gray-800);
+    color: var(--white);
+    padding: 0.75rem 1rem;
+    border: none;
+}
+
+/* Hover para las opciones */
+.form-input option:hover,
+select.form-input option:hover {
+    background-color: var(--olive);
+    color: var(--white);
+}
+
+/* Estilos para las opciones seleccionadas */
+.form-input option:checked,
+select.form-input option:checked {
+    background-color: var(--olive);
+    color: var(--white);
+}
+
+/* Estilos para el dropdown cuando está abierto */
+.form-input select:focus option:checked,
+select.form-input:focus option:checked {
+    background-color: var(--olive-dark);
+    color: var(--white);
+}
+
 /* Enlaces sociales modernos */
 .social-link {
     color: var(--gray-400);
@@ -600,6 +665,17 @@ nav {
     }
 }
 
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @keyframes scaleIn {
     from {
         opacity: 0;
@@ -630,6 +706,10 @@ nav {
 
 .slide-in-right {
     animation: slideInRight 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-in-up {
+    animation: slideInUp 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .scale-in {
@@ -740,8 +820,348 @@ footer {
     -webkit-backdrop-filter: blur(20px);
 }
 
+/* Sección de Historia - LAYOUT MEJORADO */
+#historia {
+    position: relative;
+    z-index: 30; /* Z-index más alto que el menú */
+    background: linear-gradient(180deg, var(--black) 0%, var(--gray-900) 100%);
+    padding: var(--section-spacing) 0;
+    margin-top: 0; /* Sin margen superior */
+}
+
+#historia .bg-gradient-to-b {
+    background: linear-gradient(180deg, var(--black) 0%, var(--gray-900) 100%);
+}
+
+#historia .bg-black.bg-opacity-80 {
+    background: rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+#historia .border-2.border-olive {
+    border-color: var(--olive) !important;
+    box-shadow: 0 0 30px rgba(104, 92, 46, 0.3);
+}
+
+#historia .transform.hover\:scale-105:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px rgba(104, 92, 46, 0.5);
+}
+
+/* Decoraciones italianas en las esquinas */
+#historia .absolute {
+    border-color: var(--olive) !important;
+    opacity: 0.8;
+}
+
+#historia .absolute:hover {
+    opacity: 1;
+    border-color: var(--olive-light) !important;
+}
+
+/* Botón de descarga mejorado */
+#menu .inline-flex {
+    background: linear-gradient(135deg, var(--olive) 0%, var(--olive-dark) 100%);
+    border: 2px solid var(--olive);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#menu .inline-flex:hover {
+    background: linear-gradient(135deg, var(--olive-dark) 0%, var(--olive) 100%);
+    border-color: var(--olive-light);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(104, 92, 46, 0.4);
+}
+
+#menu .inline-flex:active {
+    transform: translateY(-2px) scale(1.02);
+}
+
 /* Utilidades de color basadas en variables (paleta beige) */
 .bg-surface-900 { background-color: var(--gray-900) !important; }
 .bg-surface-800 { background-color: var(--gray-800) !important; }
 .text-muted { color: var(--coffee-latte) !important; }
 .text-muted-2 { color: var(--coffee-latte) !important; }
+
+/* NUEVO: Sistema de layout mejorado para evitar superposiciones */
+section {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Asegurar que cada sección tenga su espacio propio */
+#galeria,
+#ubicacion,
+#eventos,
+#contacto {
+    position: relative;
+    z-index: 40; /* Z-index progresivamente más alto */
+    padding: var(--section-spacing) 0;
+    margin-top: 0;
+    background-color: var(--black);
+}
+
+/* Ajustes específicos para secciones que podrían tener problemas */
+#galeria {
+    z-index: 50;
+}
+
+#ubicacion {
+    z-index: 60;
+}
+
+#eventos {
+    z-index: 70;
+}
+
+#contacto {
+    z-index: 80;
+}
+
+/* Footer con z-index apropiado */
+footer {
+    position: relative;
+    z-index: 90;
+    margin-top: 0;
+}
+
+/* Asegurar que las imágenes de fondo no se superpongan */
+.hero-section,
+#historia,
+#menu,
+#galeria,
+#ubicacion,
+#eventos,
+#contacto {
+    background-attachment: scroll; /* Evitar parallax problemático */
+}
+
+/* Mejorar el espaciado entre secciones en dispositivos móviles */
+@media (max-width: 768px) {
+    :root {
+        --section-spacing: 3rem;
+    }
+    
+    section {
+        padding: var(--section-spacing) 0;
+    }
+}
+
+/* NUEVO: Estilos mejorados para el formulario de contacto */
+.contact-form {
+    background: linear-gradient(135deg, rgba(209, 187, 145, 0.08) 0%, rgba(209, 187, 145, 0.04) 100%);
+    padding: 2rem;
+    border-radius: var(--border-radius-xl);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-md);
+}
+
+.contact-form form {
+    position: relative;
+}
+
+.contact-form label {
+    color: var(--white);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.contact-form label::after {
+    content: ' *';
+    color: var(--olive);
+    font-weight: bold;
+}
+
+.contact-form label:not([for="telefono"])::after {
+    content: ' *';
+    color: var(--olive);
+    font-weight: bold;
+}
+
+.contact-form label[for="telefono"]::after {
+    content: '';
+}
+
+/* Mejoras para los campos del formulario */
+.form-input:focus {
+    outline: none;
+    border-color: var(--olive);
+    box-shadow: 0 0 0 3px rgba(104, 92, 46, 0.2), var(--shadow-md);
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, rgba(209, 187, 145, 0.15) 0%, rgba(209, 187, 145, 0.08) 100%);
+}
+
+.form-input:valid {
+    border-color: var(--olive);
+    background: linear-gradient(135deg, rgba(104, 92, 46, 0.1) 0%, rgba(104, 92, 46, 0.05) 100%);
+}
+
+.form-input:invalid:not(:placeholder-shown) {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+/* Estilos para el botón de envío */
+.contact-form .btn-primary {
+    background: linear-gradient(135deg, var(--olive) 0%, var(--olive-dark) 100%);
+    border: 2px solid var(--olive);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-form .btn-primary:hover {
+    background: linear-gradient(135deg, var(--olive-dark) 0%, var(--olive) 100%);
+    border-color: var(--olive-light);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(104, 92, 46, 0.4);
+}
+
+.contact-form .btn-primary:active {
+    transform: translateY(-1px) scale(1.01);
+}
+
+/* Mensaje de campos obligatorios */
+.contact-form .text-xs {
+    color: var(--gray-400);
+    font-style: italic;
+}
+
+/* Mejoras para dispositivos móviles */
+@media (max-width: 768px) {
+    .contact-form {
+        padding: 1.5rem;
+    }
+    
+    .contact-form .grid.md\\:grid-cols-2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* NUEVO: Estilos para el lightbox de la galería */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    cursor: pointer;
+}
+
+.lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-xl);
+}
+
+.lightbox button {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: rgba(0, 0, 0, 0.5);
+    color: var(--white);
+    border: none;
+    font-size: 2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lightbox button:hover {
+    background: var(--olive);
+    transform: scale(1.1);
+}
+
+/* NUEVO: Animaciones de entrada mejoradas */
+.animate-in {
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* NUEVO: Estilos para navegación con scroll */
+nav.scrolled {
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* NUEVO: Mejoras para el menú móvil */
+.mobile-menu {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+}
+
+.mobile-menu.show {
+    transform: translateY(0);
+}
+
+.mobile-menu .nav-link {
+    display: block;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--gray-800);
+    text-align: center;
+}
+
+.mobile-menu .nav-link:last-child {
+    border-bottom: none;
+}
+
+/* NUEVO: Estados de carga para botones */
+.btn-primary:disabled,
+.btn-secondary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* NUEVO: Indicadores de validación */
+.form-input.valid {
+    border-color: #10b981;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+}
+
+.form-input.invalid {
+    border-color: #ef4444;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+}
+
+/* NUEVO: Mensajes de éxito y error */
+.form-message {
+    padding: 1rem;
+    border-radius: var(--border-radius-md);
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+.form-message.success {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid #10b981;
+    color: #10b981;
+}
+
+.form-message.error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid #ef4444;
+    color: #ef4444;
+}

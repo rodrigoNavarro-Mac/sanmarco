@@ -24,6 +24,7 @@
                     <div class="ml-10 flex items-baseline space-x-8">
                         <a href="#inicio" class="nav-link">Inicio</a>
                         <a href="#menu" class="nav-link">Menú</a>
+                        <a href="#historia" class="nav-link">Historia</a>
                         <a href="#galeria" class="nav-link">Galería</a>
                         <a href="#ubicacion" class="nav-link">Ubicación</a>
                         <a href="#eventos" class="nav-link">Eventos</a>
@@ -64,6 +65,35 @@
         </div>
     </section>
 
+    <!-- Nuestra Historia Section -->
+    <section id="historia" class="py-20 bg-gradient-to-b from-black to-surface-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-playfair font-bold text-white mb-4 slide-in-up">Nuestra Historia</h2>
+                <p class="text-xl font-inter font-light text-olive slide-in-up">Tradición y pasión desde 1992</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-black bg-opacity-80 p-10 rounded-xl border-2 border-olive border-opacity-50 shadow-2xl transform hover:scale-105 transition-all duration-500">
+                    <div class="relative">
+                        <!-- Decoración italiana -->
+                        <div class="absolute -top-4 -left-4 w-8 h-8 border-l-2 border-t-2 border-olive border-opacity-60"></div>
+                        <div class="absolute -top-4 -right-4 w-8 h-8 border-r-2 border-t-2 border-olive border-opacity-60"></div>
+                        <div class="absolute -bottom-4 -left-4 w-8 h-8 border-l-2 border-b-2 border-olive border-opacity-60"></div>
+                        <div class="absolute -bottom-4 -right-4 w-8 h-8 border-r-2 border-b-2 border-olive border-opacity-60"></div>
+                        
+                        <p class="text-lg font-inter text-white leading-relaxed text-center mb-6">
+                            San Marco es un restaurante italiano fundado en 1992, que ha pasado de generación en generación preservando la esencia de la gastronomía tradicional de Italia. La mayor parte de nuestra materia prima es importada directamente desde Italia, garantizando autenticidad en cada platillo. Somos reconocidos por nuestras pizzas napolitanas al estilo original y recetas clásicas italianas, complementadas con cortes de res premium y filetes en salsas exclusivas. Pensando en toda la familia, contamos con área de juegos para niños y estacionamiento privado.
+                        </p>
+                        <p class="text-lg font-inter text-white leading-relaxed text-center">
+                            Nuestro objetivo es hacerte sentir en Italia a través de nuestros platillos y bebidas, creando una experiencia única en cada visita.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Menú Section -->
     <section id="menu" class="py-20 bg-black">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -83,7 +113,6 @@
                                     <h4 class="text-lg font-semibold text-white">Bruschetta al Pomodoro</h4>
                                     <p class="text-sm text-muted">Pan tostado con tomates, albahaca y aceite de oliva</p>
                                 </div>
-                                <span class="text-olive font-semibold">$12</span>
                             </div>
                         </div>
                         <div class="menu-item">
@@ -92,7 +121,6 @@
                                     <h4 class="text-lg font-semibold text-white">Carpaccio di Manzo</h4>
                                     <p class="text-sm text-muted">Ternera cruda con parmesano, rúcula y limón</p>
                                 </div>
-                                <span class="text-olive font-semibold">$18</span>
                             </div>
                         </div>
                     </div>
@@ -108,7 +136,6 @@
                                     <h4 class="text-lg font-semibold text-white">Spaghetti alla Carbonara</h4>
                                     <p class="text-sm text-muted">Pasta con huevo, guanciale, parmesano y pimienta negra</p>
                                 </div>
-                                <span class="text-olive font-semibold">$24</span>
                             </div>
                         </div>
                         <div class="menu-item">
@@ -117,7 +144,6 @@
                                     <h4 class="text-lg font-semibold text-white">Risotto ai Porcini</h4>
                                     <p class="text-sm text-muted">Arroz cremoso con setas porcini y parmesano</p>
                                 </div>
-                                <span class="text-olive font-semibold">$26</span>
                             </div>
                         </div>
                     </div>
@@ -133,7 +159,6 @@
                                     <h4 class="text-lg font-semibold text-white">Bistecca alla Fiorentina</h4>
                                     <p class="text-sm text-muted">T-bone steak a la parrilla con hierbas aromáticas</p>
                                 </div>
-                                <span class="text-olive font-semibold">$42</span>
                             </div>
                         </div>
                         <div class="menu-item">
@@ -142,11 +167,22 @@
                                     <h4 class="text-lg font-semibold text-white">Branzino al Sale</h4>
                                     <p class="text-sm text-muted">Lubina cocida en costra de sal con limón</p>
                                 </div>
-                                <span class="text-olive font-semibold">$38</span>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <!-- Botón de descarga del menú completo -->
+            <div class="text-center mt-12">
+                <a href="Menu.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-8 py-4 bg-olive text-black font-semibold rounded-lg hover:bg-olive-600 transition-colors duration-300 transform hover:scale-105 shadow-lg cursor-pointer">
+                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    Descargar Menú Completo (PDF)
+                </a>
+                <p class="text-muted mt-3 text-sm">Obtén nuestro menú completo</p>
+                <p class="text-xs text-muted mt-2">Se abrirá en una nueva pestaña</p>
             </div>
         </div>
     </section>
@@ -319,41 +355,38 @@
             
             <div class="grid lg:grid-cols-2 gap-12">
                 <div class="contact-form">
-                    <form class="space-y-6">
+                    <form id="contactForm" class="space-y-6">
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
-                                <label for="nombre" class="block text-white font-medium mb-2">Nombre</label>
+                                <label for="nombre" class="block text-white font-medium mb-2">Nombre *</label>
                                 <input type="text" id="nombre" name="nombre" class="form-input" required>
                             </div>
                             <div>
-                                <label for="email" class="block text-white font-medium mb-2">Email</label>
+                                <label for="email" class="block text-white font-medium mb-2">Email *</label>
                                 <input type="email" id="email" name="email" class="form-input" required>
                             </div>
                         </div>
                         <div>
                             <label for="telefono" class="block text-white font-medium mb-2">Teléfono</label>
-                            <input type="tel" id="telefono" name="telefono" class="form-input">
+                            <input type="tel" id="telefono" name="telefono" class="form-input" placeholder="+52 (55) 1234-5678">
                         </div>
                         <div>
-                            <label for="fecha" class="block text-white font-medium mb-2">Fecha de Reserva</label>
-                            <input type="date" id="fecha" name="fecha" class="form-input">
-                        </div>
-                        <div>
-                            <label for="personas" class="block text-white font-medium mb-2">Número de Personas</label>
-                            <select id="personas" name="personas" class="form-input">
-                                <option value="">Seleccionar</option>
-                                <option value="1">1 persona</option>
-                                <option value="2">2 personas</option>
-                                <option value="3">3 personas</option>
-                                <option value="4">4 personas</option>
-                                <option value="5+">5+ personas</option>
+                            <label for="asunto" class="block text-white font-medium mb-2">Asunto *</label>
+                            <select id="asunto" name="asunto" class="form-input" required>
+                                <option value="">Seleccionar motivo</option>
+                                <option value="Reserva de Mesa">Reserva de Mesa</option>
+                                <option value="Consulta General">Consulta General</option>
+                                <option value="Evento Especial">Evento Especial</option>
+                                <option value="Sugerencia">Sugerencia</option>
+                                <option value="Otro">Otro</option>
                             </select>
                         </div>
                         <div>
-                            <label for="mensaje" class="block text-white font-medium mb-2">Mensaje</label>
-                            <textarea id="mensaje" name="mensaje" rows="4" class="form-input" placeholder="Comentarios especiales o solicitudes..."></textarea>
+                            <label for="mensaje" class="block text-white font-medium mb-2">Mensaje *</label>
+                            <textarea id="mensaje" name="mensaje" rows="4" class="form-input" placeholder="Cuéntanos más detalles sobre tu consulta o reserva..." required></textarea>
                         </div>
-                        <button type="submit" class="btn-primary w-full">Enviar Reserva</button>
+                        <button type="submit" class="btn-primary w-full">Enviar Mensaje</button>
+                        <p class="text-xs text-muted text-center">* Campos obligatorios</p>
                     </form>
                 </div>
                 
